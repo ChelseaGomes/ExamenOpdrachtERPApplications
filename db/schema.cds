@@ -11,7 +11,7 @@ entity Kandidaat: cuid, managed{
     afdeling: Association to Afdeling; 
     contract_type: Association to ContractType; 
     rapporteert_naar: Association to Persoon; 
-    voorkeurstaal: Association to Talen; 
+    voorkeurstaal: Association to Taal; 
     startdatum: Date; 
     anciënniteit: Integer; 
     status: String; 
@@ -66,7 +66,7 @@ entity ContractType: CodeList{
     }
 }
 
-entity Talen: CodeList{
+entity Taal: CodeList{
     key code: String enum {
         engels = 'ENG'; 
         nederland = 'NL'; 
