@@ -1,7 +1,9 @@
 using { cuid, managed, sap.common.CodeList } from '@sap/cds/common';
 namespace db;
 
-entity Kandidaat: cuid, managed{
+
+context Kandidaat {
+    entity Kandidaten: cuid, managed{
     key ID : UUID; 
     voornaam: String; 
     achternaam: String; 
@@ -16,33 +18,14 @@ entity Kandidaat: cuid, managed{
     anciënniteit: Integer; 
     status: String; 
 }
+    
+}
+
 entity Afdeling {
     code: Association to Code; 
     omschrijving: String; 
     maxronde1kandidaat: Integer;
     maxronde2kandidaat: Integer; 
-}
-
-entity Ronde: cuid, managed{
-    key ID : UUID; 
-    ronde_nummer: Association to Nummer; 
-    kandidaat: Association to Kandidaat; 
-    goedgekeurd : Boolean; 
-    goedgekeurd_door: Association to Persoon;  
-    datum_goedkeuring: DateTime; 
-}
-
-entity Persoon: cuid, managed{
-     key ID : UUID; 
-    voornaam: String; 
-    achternaam: String;
-}
-
-entity Nummer: CodeList{
-    key code: Integer enum {
-        ronde1 = 1;
-        ronde2 = 2;
-    }
 }
 entity Code : CodeList{
     key code: String enum {
@@ -54,7 +37,6 @@ entity Code : CodeList{
         it_department = 'IT';
     }
 }
-
 entity ContractType: CodeList{
     key code: String enum {
         fulltime = 'Full Time'; 
@@ -65,15 +47,37 @@ entity ContractType: CodeList{
 
     }
 }
+entity Persoon: cuid, managed{
+     key ID : UUID; 
+    voornaam: String; 
+    achternaam: String;
+}
 
 entity Taal: CodeList{
     key code: String enum {
         engels = 'ENG'; 
-        nederland = 'NL'; 
+        nederlands = 'NL'; 
         duits = 'GER'; 
         frans = 'FRA'; 
     }
 }
+
+/* entity Ronde: cuid, managed{
+    key ID : UUID; 
+    ronde_nummer: Association to Nummer; 
+    kandidaat: Association to Kandidaat; 
+    goedgekeurd : Boolean; 
+    goedgekeurd_door: Association to Persoon;  
+    datum_goedkeuring: DateTime; 
+} */
+
+
+/* entity Nummer: CodeList{
+    key code: Integer enum {
+        ronde1 = 1;
+        ronde2 = 2;
+    }
+} */
 
 
 

@@ -1,0 +1,1 @@
+using KandidaatService as service from '../../srv/services';
